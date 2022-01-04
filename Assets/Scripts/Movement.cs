@@ -34,7 +34,6 @@ public class Movement : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Space))
         {
-            Debug.Log("Space");
             if (!audioSource.isPlaying)
             {
                 audioSource.Play();
