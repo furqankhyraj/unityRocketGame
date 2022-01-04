@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class CollisionHandler : MonoBehaviour
 {
     void OnCollisionEnter(Collision other)
@@ -18,8 +18,16 @@ public class CollisionHandler : MonoBehaviour
                 break;
             default:
                 Debug.Log("Blew up");
+                ReloadLevel();
                 break;
 
         }
+    }
+
+    private void ReloadLevel(){
+        // SceneManager.LoadScene(0);
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentSceneIndex);
+
     }
 }
