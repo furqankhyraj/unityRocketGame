@@ -8,21 +8,18 @@ public class Movement : MonoBehaviour
     Rigidbody rb;
     [SerializeField] float mainThrust = 1000f;
     [SerializeField] float rotateThrust = 100f;
+    [SerializeField] AudioClip mainEngine;
 
     AudioSource audioSource;
 
-    //Play the music
-    bool m_Play;
-    //Detect when you use the toggle, ensures music isn’t played multiple times
-    bool m_ToggleChange;
-    // Start is called before the first frame update
+    bool isAlive;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         ProcessThrust();
@@ -36,7 +33,7 @@ public class Movement : MonoBehaviour
         {
             if (!audioSource.isPlaying)
             {
-                audioSource.Play();
+                audioSource.PlayOneShot(mainEngine);
             }
 
 
