@@ -10,10 +10,14 @@ public class Movement : MonoBehaviour
     [SerializeField] float rotateThrust = 100f;
     [SerializeField] AudioClip mainEngine;
 
+    [SerializeField] ParticleSystem rocketBottomThrust;
+    [SerializeField] ParticleSystem leftThrust;
+    [SerializeField] ParticleSystem rightThrust;
+
     AudioSource audioSource;
 
     bool isAlive;
-
+ 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -31,6 +35,7 @@ public class Movement : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Space))
         {
+            rocketBottomThrust.Play();
             if (!audioSource.isPlaying)
             {
                 audioSource.PlayOneShot(mainEngine);
@@ -50,10 +55,12 @@ public class Movement : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.A))
         {
+            leftThrust.Play();
             ApplyRotation(rotateThrust);
         }
         else if (Input.GetKey(KeyCode.D))
         {
+            rightThrust.Play();
             ApplyRotation(-rotateThrust);
         }
     }
